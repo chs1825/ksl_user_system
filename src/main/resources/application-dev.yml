@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://106.255.230.162:46070/singles_kokoa_v4?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&autoReconnect=true&useSSL=false&allowMultiQueries=true
+    username: iirtech
+    password: iirtech!23

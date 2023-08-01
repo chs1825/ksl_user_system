@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: local
+
+  main:
+    allow-bean-definition-overriding: true
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+      additional-paths: src/main/webapp
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
+
+
+mybatis:
+  mapper-locations: mybatis/mapper/**/*_SQL.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+
+
