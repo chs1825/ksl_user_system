@@ -31,8 +31,13 @@ public class AopExceptionTransfer {
 		this.exceptionTransfer = exceptionTransfer;
 	}
 
+
+	// 포인트 컷 바꿔주기
 	@Pointcut("execution(* egovframework.com..impl.*Impl.*(..))")
-	private void exceptionTransferService() {}
+	private void exceptionTransferService() {
+
+
+	}
 
 	@AfterThrowing(pointcut= "exceptionTransferService()", throwing="ex")
 	public void doAfterThrowingExceptionTransferService(JoinPoint thisJoinPoint, Exception ex) throws Exception {

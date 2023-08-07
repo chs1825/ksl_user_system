@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 
 @Configuration
-@MapperScan(basePackages = "iirtech.com.**.mapper")
+@MapperScan(basePackages = "iirtech.com.**.mapper") // 이거 지우면 mapper 못쓴다
 public class EgovConfigMapper {
 
 

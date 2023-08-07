@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: local #여기서 설정
 
   main:
     allow-bean-definition-overriding: true
@@ -12,9 +12,13 @@ spring:
       enabled: true
       additional-paths: src/main/webapp
 
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+
   mvc:
     view:
-      prefix: /WEB-INF/views/
+      prefix: /WEB-INF/jsp/
       suffix: .jsp
 
 #  thymeleaf:

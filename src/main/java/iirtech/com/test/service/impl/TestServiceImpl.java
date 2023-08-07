@@ -16,6 +16,5 @@ public class TestServiceImpl extends EgovAbstractServiceImpl implements TestSeri
     @Override
     public NbVO testSpringBoot() {
         return testMapper.selectMainNotice();
-//        return "이게 되는것인가";
     }
 }

@@ -8,7 +8,7 @@ plugins {
 
 group = 'egov'
 //version = '0.0.1-SNAPSHOT'
-description = 'ksl-userSys'
+description = 'ksl-user-system'
 
 java {
     sourceCompatibility = '1.8'
@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-    //    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     // 타임리프
@@ -43,8 +43,14 @@ dependencies {
     implementation 'com.mysql:mysql-connector-j:8.0.32'
     // -- DATABASE end
 
-    // 내장 톰켓
+    // 내장 톰켓 jsp 사용
     implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+    // tiles 설정
+    implementation 'org.apache.tiles:tiles-jsp:3.0.8'
+    implementation 'org.apache.tiles:tiles-core:3.0.8'
+    implementation 'org.apache.tiles:tiles-servlet:3.0.8'
+
+
     // 타임리프
 //    implementation "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect"
     // log4j

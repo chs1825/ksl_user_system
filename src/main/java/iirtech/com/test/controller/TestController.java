@@ -21,18 +21,30 @@ public class TestController {
 
     // 로그를 출력할 Logger 생성
     private static final Logger logger = LoggerFactory.getLogger("로그테스트");
-    @RequestMapping("/go.do")
-    public String go(Model model){
 
 
-
-
-        log.debug("디버그 : {}" , testSerivce.testSpringBoot());
-        logger.debug("디버그 : {}" , testSerivce.testSpringBoot());
-
-        model.addAttribute("a", testSerivce.testSpringBoot().getTitle() + "아니!!!!!");
-
-        return "jspgood";
+    @RequestMapping("/home.do")
+    public String homeStart(){
+        return "home";
     }
+
+
+    @RequestMapping("/go.do")
+    public String go(Model model) {
+
+
+        log.debug("디버그 : {}", testSerivce.testSpringBoot());
+        logger.debug("디버그 : {}", testSerivce.testSpringBoot());
+
+        model.addAttribute("a", testSerivce.testSpringBoot().getTitle());
+
+        return "/jspgood";
+    }
+
+
+
+
+
+
 
 }

@@ -2,7 +2,7 @@ package iirtech.com.test.mapper;
 
 
 import iirtech.com.test.domain.NbVO;
-import org.apache.ibatis.annotations.Mapper;
+import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
 @Mapper
 public interface TestMapper {

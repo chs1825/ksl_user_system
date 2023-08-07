@@ -4,6 +4,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class EgovWebMvcConfiguration implements WebMvcConfigurer {
 
+    //인코딩 필터
     @Bean
     public FilterRegistrationBean encodingFilterBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
@@ -28,5 +30,9 @@ public class EgovWebMvcConfiguration implements WebMvcConfigurer {
         registrationBean.addUrlPatterns("*.do");
         return registrationBean;
     }
+
+    // xss 필터 추가
+
+
 
 }

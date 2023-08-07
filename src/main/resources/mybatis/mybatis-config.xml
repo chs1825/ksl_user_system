@@ -8,4 +8,8 @@
         <package name="iirtech.com"/>
     </typeAliases>
 
+    <!--    <typeAliases>-->
+<!--        <typeAlias type="iirtech.com.security.vo.UserVO" alias="userVO"/>-->
+<!--    </typeAliases>-->
+
 </configuration>
