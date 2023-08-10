@@ -7,6 +7,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.Filter;
+
 
 /*
     일단 여기서는 인코딩 설정 진행
@@ -30,6 +32,11 @@ public class EgovWebMvcConfiguration implements WebMvcConfigurer {
         registrationBean.addUrlPatterns("*.do");
         return registrationBean;
     }
+
+//    @Bean
+//    public Filter sessionFilter(){
+//        return new SessionFilter();
+//    }
 
     // xss 필터 추가
 

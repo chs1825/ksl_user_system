@@ -31,3 +31,10 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
 
 
+#세션 시간 설정
+server:
+  servlet:
+    session:
+      timeout: 60
+
+

@@ -8,10 +8,20 @@ spring:
     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/notice_board
     username: chs
     password: javajava
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+      idle-timeout: 60000
+      minimum-idle: 10
 
   web:
     resources:
       static-locations: file:src/main/resources/static/
+
+custom:
+  logFilePath : /Users/chs/정리/logDir/logWriter.txt
+
+
 
 
 #logging:
@@ -21,3 +31,5 @@ spring:
 #    root: debug
 #    sql: info
 #    web: error
+
+
