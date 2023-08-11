@@ -14,7 +14,7 @@ public @interface LogTrace {
 
     String value() default "";
 
-    String path();
+    String path() default "";
 
 
 }

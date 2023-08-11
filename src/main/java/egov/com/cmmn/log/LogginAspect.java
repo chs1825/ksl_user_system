@@ -3,12 +3,12 @@ package egov.com.cmmn.log;
 import egov.com.annotaion.LogTrace;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,8 +30,6 @@ public class LogginAspect {
 
 
     @Before(value = "@annotation(requestMapping) && @annotation(logTrace)", argNames = "joinPoint,requestMapping,logTrace")
-//    @Before(value = "@annotation(requestMapping) &&@annotation(logTrace) && within(@org.springframework.web.bind.annotation.*)", argNames = "joinPoint,requestMapping,logTrace")
-//    @Before(value = "@annotation(logTrace) && @within(org.springframework.web.bind.annotation.GetMapping)")
     public void logRequestMapping(JoinPoint joinPoint, RequestMapping requestMapping, LogTrace logTrace) {
 
         String logMessage = ""; // 기록될 로그
@@ -47,26 +45,30 @@ public class LogginAspect {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedAccessTime = accessTime.format(formatter);
 
-        String[] paths = requestMapping.value();
 
+        // 작동 url 획득
+        String[] paths = requestMapping.value();
         if (paths.length > 0) {
             path = paths[0]; // Assuming only one path is defined
 
             System.out.println("RequestMapping path: " + path);
         }
 
+        // http method 획득
         RequestMethod[] methods = requestMapping.method();
-
         for (RequestMethod method : methods) {
             httpMethod = String.valueOf(method);
             System.out.println("HTTP Method: " + method);
         }
 
+
+        // 작동 메소드 명 획득
         Method targetMethod = getTargetMethod(joinPoint);
         if (targetMethod != null) {
             System.out.println("Method Name: " + targetMethod.getName());
             methodName = targetMethod.getName();
         }
+
 
         logMessage = "[" + formattedAccessTime + "] " + "Method: " + methodName +
                 ", URL: " + path + ", HTTP Method: " + httpMethod ;
@@ -75,9 +77,19 @@ public class LogginAspect {
         saveLogToFile(logMessage);
     }
 
+    // 메서드 명 가져오는 메서드
     private Method getTargetMethod(JoinPoint joinPoint) {
         try {
-            return joinPoint.getTarget().getClass().getMethod(joinPoint.getSignature().getName());
+
+            Signature signature = joinPoint.getSignature();
+            Class<?> targetClass = joinPoint.getTarget().getClass();
+
+            // Get parameter types from the signature
+            Class<?>[] parameterTypes = ((MethodSignature) signature).getParameterTypes();
+
+            // Find the method with the given name and parameter types
+            return targetClass.getMethod(signature.getName(), parameterTypes);
+
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
