@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egov.com.cmmn.log.mapper.LogMapper">
+
+        <insert id="insertAccessLog" parameterType="egov.com.cmmn.log.domain.AccessLogVO">
+            insert into tbl_access_log(access_time,access_code)
+            values
+            (STR_TO_DATE(#{formattedAccessTime},'%Y-%m-%d %H:%i:%s'), #{path})
+        </insert>
+
+</mapper>

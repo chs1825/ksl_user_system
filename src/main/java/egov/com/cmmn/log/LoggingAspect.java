@@ -1,12 +1,16 @@
 package egov.com.cmmn.log;
 
 import egov.com.annotaion.LogTrace;
+import egov.com.cmmn.log.domain.AccessLogVO;
+import egov.com.cmmn.log.service.LogAccessService;
+import egov.com.cmmn.log.service.LogAccessServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,15 +23,24 @@ import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
+import static iirtech.com.sts.domain.UrlEnum.findEnumByURL;
 
 @Component
 @Aspect
 @Slf4j
-public class LogginAspect {
+public class LoggingAspect {
 
     @Value("${custom.logFilePath}")
     private String filePath;
 
+    LogAccessService logAccessService;
+
+//    @Autowired
+    public LoggingAspect(LogAccessServiceImpl logAccessService) {
+        this.logAccessService = logAccessService;
+    }
 
     @Before(value = "@annotation(requestMapping) && @annotation(logTrace)", argNames = "joinPoint,requestMapping,logTrace")
     public void logRequestMapping(JoinPoint joinPoint, RequestMapping requestMapping, LogTrace logTrace) {
@@ -54,12 +67,25 @@ public class LogginAspect {
             System.out.println("RequestMapping path: " + path);
         }
 
-        // http method 획득
-        RequestMethod[] methods = requestMapping.method();
-        for (RequestMethod method : methods) {
-            httpMethod = String.valueOf(method);
-            System.out.println("HTTP Method: " + method);
+//        path = logTracePath;
+        System.out.println("logTracePath = " + path);
+        //path 코드화 진행
+        try {
+            path = Objects.requireNonNull(findEnumByURL(path)).getCode();
+//            path = findEnumByURL(path).getCode();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            System.out.println("e.getMessage() = " + e.getMessage());
         }
+        System.out.println("Transfer path: " + path);
+
+
+        // http method 획득
+//        RequestMethod[] methods = requestMapping.method();
+//        for (RequestMethod method : methods) {
+//            httpMethod = String.valueOf(method);
+//            System.out.println("HTTP Method: " + httpMethod);
+//        }
 
 
         // 작동 메소드 명 획득
@@ -75,6 +101,10 @@ public class LogginAspect {
 
         // 로그를 로컬 파일에 저장
         saveLogToFile(logMessage);
+
+        //로그 디비 저장
+        AccessLogVO accessLogVO = new AccessLogVO(formattedAccessTime,methodName,path);
+        logAccessService.insertAccessLog(accessLogVO);
     }
 
     // 메서드 명 가져오는 메서드
