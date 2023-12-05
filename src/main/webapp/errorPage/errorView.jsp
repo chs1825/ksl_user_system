@@ -1,16 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: chs
-  Date: 2023/08/23
-  Time: 12:03 PM
+  Date: 2023/10/04
+  Time: 4:12 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Error Page</title>
 </head>
 <body>
-<h3>통계3</h3>
+<h1>Error Occurred</h1>
+<p>${errorMessage}</p>
 </body>
 </html>

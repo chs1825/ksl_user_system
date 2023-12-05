@@ -10,11 +10,9 @@ import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -25,10 +23,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import static iirtech.com.sts.domain.UrlEnum.findEnumByURL;
+import static ksl.sts.domain.UrlEnum.findEnumByURL;
 
 @Component
-@Aspect
+//@Aspect
 @Slf4j
 public class LoggingAspect {
 

@@ -1,4 +1,4 @@
-package iirtech.com.sts.domain;
+package ksl.sts.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

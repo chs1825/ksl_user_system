@@ -1,4 +1,4 @@
-package iirtech.com.search.mapper;
+package ksl.search.mapper;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 

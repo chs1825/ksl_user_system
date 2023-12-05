@@ -9,12 +9,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">--%>
 <html>
-<body id="page-top">
+
+
 <tiles:insertAttribute name="header"/>
-<tiles:insertAttribute name="body"/>
+
+<body id="page-top">
+<tiles:insertAttribute name="content"/>
 <tiles:insertAttribute name="footer"/>
 
 
 </body>
+
 <tiles:insertAttribute name="script"/>
 </html>

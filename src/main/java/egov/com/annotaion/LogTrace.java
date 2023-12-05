@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD) // 메소드에만 적용 가능
 public @interface LogTrace {
 
-
     String value() default "";
 
     String path() default "";

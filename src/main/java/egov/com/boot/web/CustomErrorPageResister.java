@@ -47,7 +47,8 @@ public class CustomErrorPageResister implements ErrorPageRegistrar {
         ErrorPage errorPage451 = new ErrorPage(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS, "/errorCode/error451.html");
 
         // 500s
-        ErrorPage errorPage500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/errorCode/error500.html");
+        ErrorPage errorPage500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/errorPage/errorView.jsp");
+//        ErrorPage errorPage500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/errorCode/error500.html");
         ErrorPage errorPage501 = new ErrorPage(HttpStatus.NOT_IMPLEMENTED, "/errorCode/error501.html");
         ErrorPage errorPage502 = new ErrorPage(HttpStatus.BAD_GATEWAY, "/errorCode/error502.html");
         ErrorPage errorPage503 = new ErrorPage(HttpStatus.SERVICE_UNAVAILABLE, "/errorCode/error503.html");
