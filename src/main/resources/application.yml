@@ -1,16 +1,10 @@
 spring:
   profiles:
-    active: local #여기서 설정
+    active: dev #여기서 설정
 
   main:
     allow-bean-definition-overriding: true
 
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      enabled: true
-      additional-paths: src/main/webapp
 
   web:
     resources:
@@ -21,10 +15,13 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
 
+  servlet:
+    multipart:
+      enabled: false
+
 #  thymeleaf:
 #    prefix: classpath:/templates/
 #    suffix: .html
-
 
 mybatis:
   mapper-locations: mybatis/mapper/**/*_SQL.xml
@@ -36,5 +33,11 @@ server:
   servlet:
     session:
       timeout: 60
+
+#
+logging:
+  config: classpath:logback-spring2.xml
+
+
 
 

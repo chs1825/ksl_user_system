@@ -3,6 +3,11 @@ spring:
     activate:
       on-profile: local
 
+  devtools:
+    livereload:
+      enabled: false
+      port: 8945
+
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/notice_board
@@ -11,7 +16,6 @@ spring:
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
-      idle-timeout: 60000
       minimum-idle: 10
 
   web:
@@ -24,12 +28,7 @@ custom:
 
 
 
-#logging:
-#  config: src/main/resources/logback-spring.xml
-#  classpath:logback-spring.xml
-#  level:
-#    root: debug
-#    sql: info
-#    web: error
+
+
 
 
